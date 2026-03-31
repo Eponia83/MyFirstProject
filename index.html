@@ -25,25 +25,34 @@
 </table>
 <br>
 
-<h2>Ein paar Fragen an dich:</h2>
 <form action="process.php" method="post">
+
+<h2>Ein paar Fragen an dich:</h2>
 	<input type="text" name="Eingabename" value="Dein Aliasname"> <br><br>
     <input type="date" name="Datum" value="Datum"> 
- </form><br><br>
  
 <h3>Wie ist das Wetter heute?</h3>
-<form action="process.php" method="post">
     <input type="radio" name="Wetter" value="Sonne"> Sonnig <br>
 	<input type="radio" name="Wetter" value="Wolken"> Bewölkt <br>
     <input type="radio" name="Wetter" value="Regen"> Regnerisch <br>
- </form><br><br>
 
 <h3>Und bist du heute draußen aktiv?</h3>
-<form action="process.php" method="post">
     <input type="checkbox" name="Active" value="Active"> Ja, na klar! <br>
- </form><br><br>
-    
+
+
+<h3>Und wie ist deine Stimmung heute?</h3>
+<select name="Stimmung">
+    <option value="10"> Super!</option>
+	<option value="7"> Ganz gut :)</option>
+	<option value="5"> Och, so mittel</option>
+	<option value="3"> Geht so :(</option>
+	<option value="0"> Ganz mies...</option><br>
+</select>
+
+</form><br><br>
+
     <br><hr>
     <a href="https://www.udemy.com/share/101Ylm3@6heG44wKIQKX05ieDWCUUYQ7Ux6Z76AINUJDWv9VN3hC6J-j9MlHtyoWS9okApR1MA==/">Thanks to Udemy and Michael Miller!</a>
 </body>
 </html>
+
