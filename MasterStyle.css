@@ -1,3 +1,28 @@
 h1 {
   color:red;
 }
+h3 {
+  		color:blue;
+	}
+input:focus{
+		background-color:grey;
+	}
+input:invalid{
+		background-color:red;
+	}
+input:required{
+		background-color:green;
+	}
+a:link {
+		color:blue;
+	}
+a:active {
+		color:black;
+	}
+a:visited {
+		color:purple;
+	}
+a:hover {
+		background-color:blue;
+		color:white
+	}
