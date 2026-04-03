@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="de">
 <link rel="stylesheet" type="text/css" href="MasterStyle.css">
+	
 	<style>
 		div1 {
 		  color: #cc00cc;
 		}
+
+		#Getraenke {
+		  display:block;
+		}
+		#Essen {
+		  display:none;
+		}
+
+		#switch-list:hover {
+		  color:blue;
+		  background-color:grey;
+		}
 	</style>
+
+
 	
 <head>
     <meta charset="UTF-8">
@@ -13,12 +28,12 @@
 </head>
 	
 <body>
-	<div1>    
+	<div id="Kopfzeile">    
 		<h1>Hallo Welt</h1>
-    	<p> Das ist Jennys erste Website! :)</p>
-	</div1><hr>
+    		<p> Das ist Jennys erste Website! :)</p>
+	</div><hr>
 
-	<div2>
+	<div id="Elemente">
 		<table>
 		      <tr>
 		          <td>A</td><td>B</td><td>C</td>
@@ -34,21 +49,23 @@
 		      </tr>
 		</table>
 
-		<ul>
-			  <li>Coffee</li>
-			  <li>Tea</li>
-			  <li>Milk</li>
+		<ul id="Getraenke">
+			  <li>Kaffee</li>
+			  <li>Tee</li>
+			  <li>Milch</li>
 		</ul>
 
-		<ol>
-			  <li>Chocolate</li>
-			  <li>Cake</li>
-			  <li>Cookies</li>
+		<ol id="Essen">
+			  <li>Schokolade</li>
+			  <li>Kuchen</li>
+			  <li>Kekse</li>
 		</ol>
 		
-	</div2><hr>
+		<button id="switch-list">Hungrig?/ Durstig?</button>
+		
+	</div><hr>
 
-	<div3>    
+	<div id="Formular">    
 		<form action="process.php" method="post">
 		
 		<h2>Ein paar Fragen an dich:</h2>
@@ -64,6 +81,7 @@
 			<input type="checkbox" name="Active" value="Active"> Ja, na klar! <br>
 		
 		<h3>Und wie ist deine Stimmung heute?</h3>
+
 		<select name="Stimmung">
 			<option value="10"> Super!</option>
 			<option value="7"> Ganz gut :)</option>
@@ -74,10 +92,35 @@
 		
 		<input type="submit" name="submit" value= Submit Button>
 		</form><br><br>
-	</div3>
+
+	<script>
+		console.log("Hello World");
+		console.log(document);
+		console.log(document.body.children[2].children[1].innerHTML);
+
+		// document.body.addEventListener("click", function(e){
+		//	console.log("Clicked in the body");
+		//	console.log(e);
+		//	alert("Du hast die Seite angeklickt an Stelle\nX: " +e.clientX + "\nY: " +e.clientY);		
+		// });
+
+		var btnSwitch = document.getElementById("switch-list");
+		var Getraenke = document.getElementById("Getraenke");
+		var Essen = document.getElementById("Essen");
+
+		btnSwitch.addEventListener("click", function(e){
+			if(Getraenke.style.display != "none") {
+				Getraenke.style.display = "none";
+				Essen.style.display = "block";
+			} else {Essen.style.display = "none";
+				Getraenke.style.display = "block";
+			}
+		});
+	</script>
+
+	</div>
 	
 <br><hr>
     <a href="https://www.udemy.com/share/101Ylm3@6heG44wKIQKX05ieDWCUUYQ7Ux6Z76AINUJDWv9VN3hC6J-j9MlHtyoWS9okApR1MA==/">Thanks to Udemy and Michael Miller!</a>
 </body>
 </html>
-
