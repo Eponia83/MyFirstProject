@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-<link rel="stylesheet" type="text/css" href="MasterStyle.css">
+<!--	<link rel="stylesheet" type="text/css" href="MasterStyle.css">	-->
 	
 	<style>
 		div1 {
@@ -31,6 +31,8 @@
 	<div id="Kopfzeile">    
 		<h1>Hallo Welt</h1>
     		<p> Das ist Jennys erste Website! :)</p>
+
+		<button id="change-color">Deine Lieblingsfarbe für die Welt?!</button>
 	</div><hr>
 
 	<div id="Elemente">
@@ -62,8 +64,14 @@
 		</ol>
 		
 		<button id="switch-list">Hungrig?/ Durstig?</button>
+		<br><hr>
 		
-	</div><hr>
+		<br>
+		<input id="value1" type="text" value="5">
+		<input id="value2" type="text" value="5">
+		<button id="multiply">Multiplikation</button>
+		
+	</div><br><hr>
 
 	<div id="Formular">    
 		<form action="process.php" method="post">
@@ -103,11 +111,11 @@
 		//	console.log(e);
 		//	alert("Du hast die Seite angeklickt an Stelle\nX: " +e.clientX + "\nY: " +e.clientY);		
 		// });
-
+		
+		// Auswahl einer Liste (zweiter Abschnitt):
 		var btnSwitch = document.getElementById("switch-list");
 		var Getraenke = document.getElementById("Getraenke");
 		var Essen = document.getElementById("Essen");
-
 		btnSwitch.addEventListener("click", function(e){
 			if(Getraenke.style.display != "none") {
 				Getraenke.style.display = "none";
@@ -116,6 +124,53 @@
 				Getraenke.style.display = "block";
 			}
 		});
+		
+		// Farbänderung (erster Abschnitt):
+		var btnColor = document.getElementById('change-color');
+		btnColor.addEventListener('click', function(e){
+			var Kopfzeile=document.getElementById('Kopfzeile');
+			switch (Kopfzeile.style.color){
+				case "red":
+					Kopfzeile.style.color="green";
+					break;
+				case "green":
+					Kopfzeile.style.color="blue";
+					break;
+				case "blue":
+					Kopfzeile.style.color="black";
+					break;
+				case "black":
+					Kopfzeile.style.color="purple";
+					break;
+				default:
+					Kopfzeile.style.color="red";
+					break;
+				}
+		});
+
+		// Multiplikation von Zahlen:
+		var btnMultiply=document.getElementById("multiply");
+		var inputValue1=document.getElementById("value1");
+		var inputValue2=document.getElementById("value2");
+		btnMultiply.addEventListener('click', function(e){
+			var val1=inputValue1.value;
+			var val2=inputValue2.value;
+			if (isNaN(val1) || isNaN(val2)) {
+				alert("Du weißt schon, dass man nur Zahlen multiplizieren kann, ja?! ;) \nAch ja: Und bei Kommazahlen bitte einen Punkt verwenden...")
+			} else {
+				alert(val1+" X "+val2+" = "+(val1*val2).toFixed(2));
+			}
+
+		});
+		function validateNumber(){
+			if(isNaN(this.value)){
+				this.style.border="2px solid red";
+			} else {
+				this.style.border="";}
+		}
+		inputValue1.addEventListener('keyup', validateNumber);		
+		inputValue2.addEventListener('keyup', validateNumber);
+
 	</script>
 
 	</div>
