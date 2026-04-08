@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-<!--	<link rel="stylesheet" type="text/css" href="MasterStyle.css">	-->
+<link rel="stylesheet" type="text/css" href="MasterStyle.css">
 	
 	<style>
 		div1 {
@@ -68,8 +68,15 @@
 		
 		<br>
 		<input id="value1" type="text" value="5">
+		<span> x </span>
 		<input id="value2" type="text" value="5">
+		<p id="result" ></p>
 		<button id="multiply">Multiplikation</button>
+		
+	</div><br><hr>
+		<p> Mein Haustier ist: </p>
+		<button id="billy">Billy</button>
+	<div id="dog">  
 		
 	</div><br><hr>
 
@@ -106,6 +113,7 @@
 		console.log(document);
 		console.log(document.body.children[2].children[1].innerHTML);
 
+		// Koordinaten eines Klicks anzeigen (Simples Eventhandler-Bsp; auskommentiert, weil sonst nichts mehr funktioniert)
 		// document.body.addEventListener("click", function(e){
 		//	console.log("Clicked in the body");
 		//	console.log(e);
@@ -152,13 +160,16 @@
 		var btnMultiply=document.getElementById("multiply");
 		var inputValue1=document.getElementById("value1");
 		var inputValue2=document.getElementById("value2");
+		var result=document.getElementById("result");
 		btnMultiply.addEventListener('click', function(e){
 			var val1=inputValue1.value;
 			var val2=inputValue2.value;
 			if (isNaN(val1) || isNaN(val2)) {
-				alert("Du weißt schon, dass man nur Zahlen multiplizieren kann, ja?! ;) \nAch ja: Und bei Kommazahlen bitte einen Punkt verwenden...")
+				result.innerHTML="Du weißt schon, dass man nur Zahlen multiplizieren kann, ja?! ;) \nAch ja: Und bei Kommazahlen bitte einen Punkt verwenden...";
+				result.style.color="red";
 			} else {
-				alert(val1+" X "+val2+" = "+(val1*val2).toFixed(2));
+				result.innerHTML=" = "+(val1*val2).toFixed(2);
+				result.style.color="green"
 			}
 
 		});
@@ -170,6 +181,23 @@
 		}
 		inputValue1.addEventListener('keyup', validateNumber);		
 		inputValue2.addEventListener('keyup', validateNumber);
+
+		// Billy, the dog:
+		var btnBilly=document.getElementById("billy");
+		myDog = {
+			species:"Hund",
+			color:"weiß",
+			age:"10",
+			favorites:['Snacks', 'Kuscheln', 'verrückt rumrennen'],
+			displayAge:function(){
+				alert("Billy ist 10 Jahre alt")
+			}
+		}
+		btnBilly.addEventListener('click', function(e){
+			alert("Billy ist "+myDog.color);	
+			alert("Billy liebt "+myDog.favorites[0]);
+			myDog.displayAge()
+		})		
 
 	</script>
 
