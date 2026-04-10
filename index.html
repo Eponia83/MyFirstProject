@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
-<link rel="stylesheet" type="text/css" href="MasterStyle.css">
+
+<!--  	// Eigener Style:
+	<link rel="stylesheet" type="text/css" href="MasterStyle.css">	-->
 	
 	<style>
 		div1 {
@@ -23,20 +25,25 @@
 
 	
 <head>
-    <meta charset="UTF-8">
-    <title>Meine erste Website</title>
+	<meta charset="UTF-8">
+	<title>Meine erste Website</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </head>
 	
 <body>
-	<div id="Kopfzeile">    
+	<div id="Kopfzeile" class="col-md-12 bg-success text-center">    
 		<h1>Hallo Welt</h1>
     		<p> Das ist Jennys erste Website! :)</p>
 
 		<button id="change-color">Deine Lieblingsfarbe für die Welt?!</button>
-	</div><hr>
+		<br><hr>
+	</div>
 
-	<div id="Elemente">
-		<table>
+	<div class="col-md-3">
+		<table class="table table-hover table-striped table-bordered">
+		<br>
 		      <tr>
 		          <td>A</td><td>B</td><td>C</td>
 		      </tr>
@@ -50,7 +57,10 @@
 		      <td>7</td><td>8</td><td>9</td>
 		      </tr>
 		</table>
+	</div><br>
 
+	<div class="col-md-3">
+		<br>
 		<ul id="Getraenke">
 			  <li>Kaffee</li>
 			  <li>Tee</li>
@@ -64,8 +74,10 @@
 		</ol>
 		
 		<button id="switch-list">Hungrig?/ Durstig?</button>
-		<br><hr>
+		<br>
+	</div><br>
 		
+	<div class="col-md-3">
 		<br>
 		<input id="value1" type="text" value="5">
 		<span> x </span>
@@ -73,14 +85,15 @@
 		<p id="result" ></p>
 		<button id="multiply">Multiplikation</button>
 		
-	</div><br><hr>
+	</div>
+		<br>
 		<p> Mein Haustier ist: </p>
 		<button id="billy">Billy</button>
-	<div id="dog">  
+	<div id="dog" class="col-md-4">  
 		
-	</div><br><hr>
+	</div><br>
 
-	<div id="Formular">    
+	<div id="Formular" class="col-md-12">    
 		<form action="process.php" method="post">
 		
 		<h2>Ein paar Fragen an dich:</h2>
@@ -107,11 +120,18 @@
 		
 		<input type="submit" name="submit" value= Submit Button>
 		</form><br><br>
+	</div>
+	
+	<br><hr>
+
+	<div class="col-md-12 bg-success text-center">
+    		<a href="https://www.udemy.com/share/101Ylm3@6heG44wKIQKX05ieDWCUUYQ7Ux6Z76AINUJDWv9VN3hC6J-j9MlHtyoWS9okApR1MA==/">Thanks to Udemy and Michael Miller!</a>
+	</div>
 
 	<script>
 		console.log("Hello World");
 		console.log(document);
-		console.log(document.body.children[2].children[1].innerHTML);
+		//console.log(document.body.children[2].children[1].innerHTML);
 
 		// Koordinaten eines Klicks anzeigen (Simples Eventhandler-Bsp; auskommentiert, weil sonst nichts mehr funktioniert)
 		// document.body.addEventListener("click", function(e){
@@ -201,9 +221,5 @@
 
 	</script>
 
-	</div>
-	
-<br><hr>
-    <a href="https://www.udemy.com/share/101Ylm3@6heG44wKIQKX05ieDWCUUYQ7Ux6Z76AINUJDWv9VN3hC6J-j9MlHtyoWS9okApR1MA==/">Thanks to Udemy and Michael Miller!</a>
 </body>
 </html>
