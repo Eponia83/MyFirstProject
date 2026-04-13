@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<!--  	// Eigener Style:
-	<link rel="stylesheet" type="text/css" href="MasterStyle.css">	-->
 	
+<head>
+	<meta charset="UTF-8">
+	<title>Meine erste Website</title>
+	<!--  	// Eigener Style:
+	<link rel="stylesheet" type="text/css" href="MasterStyle.css">	-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style>
 		div1 {
 		  color: #cc00cc;
@@ -20,30 +23,26 @@
 		  color:blue;
 		  background-color:grey;
 		}
+		#NEU {
+			color: coral
+		}
 	</style>
-
-
-	
-<head>
-	<meta charset="UTF-8">
-	<title>Meine erste Website</title>
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 </head>
 	
 <body>
-	<div id="Kopfzeile" class="col-md-12 bg-success text-center">    
-		<h1>Hallo Welt</h1>
-    		<p> Das ist Jennys erste Website! :)</p>
-
-		<button id="change-color">Deine Lieblingsfarbe für die Welt?!</button>
-		<br><hr>
+	<div class="row bg-success align-items-center">
+    		<div id="Kopfzeile" class="col-md-10 text-center">    
+        		<h1>Hallo Welt</h1>
+        		<p>Das ist Jennys erste Website! :)</p>
+    		</div>
+    		<div class="col-md-2 text-center"> 
+			<br>   
+        		<button id="change-color" class="btn btn-success">Deine Lieblingsfarbe für die Welt?</button>
+    		</div>
 	</div>
 
 	<div class="col-md-3">
 		<table class="table table-hover table-striped table-bordered">
-		<br>
 		      <tr>
 		          <td>A</td><td>B</td><td>C</td>
 		      </tr>
@@ -73,24 +72,23 @@
 			  <li>Kekse</li>
 		</ol>
 		
-		<button id="switch-list">Hungrig?/ Durstig?</button>
+		<button id="switch-list" class="btn btn-warning">Hungrig?/ Durstig?</button>
 		<br>
 	</div><br>
 		
-	<div class="col-md-3">
-		<br>
-		<input id="value1" type="text" value="5">
+	<div class="col-md-2">
+		<input id="value1" class="form-control" type="text" value="5">
 		<span> x </span>
-		<input id="value2" type="text" value="5">
+		<input id="value2" class="form-control" type="text" value="5">
 		<p id="result" ></p>
-		<button id="multiply">Multiplikation</button>
+		<button id="multiply" class="btn btn-secondary">Multiplikation</button>
 		
-	</div>
+	</div >
+
+	<div id="dog" class="col-md-4 text-center">  
 		<br>
 		<p> Mein Haustier ist: </p>
-		<button id="billy">Billy</button>
-	<div id="dog" class="col-md-4">  
-		
+		<button id="billy" class="btn btn-secondary">Billy</button>
 	</div><br>
 
 	<div id="Formular" class="col-md-12">    
@@ -122,12 +120,15 @@
 		</form><br><br>
 	</div>
 	
-	<br><hr>
+	<div class="col-md-12 bg-warning text-center">
+		<h2 id="NEU">Neugierig auf meine erste Web-Karte?! Dann klick <a href="xxxx">hier</a> </h2>		
+	</div>
 
 	<div class="col-md-12 bg-success text-center">
     		<a href="https://www.udemy.com/share/101Ylm3@6heG44wKIQKX05ieDWCUUYQ7Ux6Z76AINUJDWv9VN3hC6J-j9MlHtyoWS9okApR1MA==/">Thanks to Udemy and Michael Miller!</a>
 	</div>
 
+    
 	<script>
 		console.log("Hello World");
 		console.log(document);
