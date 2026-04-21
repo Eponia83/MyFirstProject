@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "testdaten",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "Name": "Stadtpark Steglitz", "Bild": "StadtparkSteglitz.jpg", "Copyright": "Von Muns - Selbst fotografiert, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=28602188" }, "geometry": { "type": "Point", "coordinates": [ 13.335587613731322, 52.448524793745847 ] } },
+{ "type": "Feature", "properties": { "fid": 2, "Name": "Waldbaude", "Bild": null, "Copyright": null }, "geometry": { "type": "Point", "coordinates": [ 13.274105050140642, 52.460808949348788 ] } }
+]
+}
