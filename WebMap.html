@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>Mein erstes Web-GIS</title>
         
-        <!-->CSS-Library</!--> 
+        <!-- CSS-Library --> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style>
             #header {
@@ -23,14 +23,26 @@
                 height: 75px;
                 background-color: darkgoldenrod;
             }
+            .meinkiez{
+                margin-bottom: 5px;
+            }
+            .buffercss{
+                margin-bottom: 10px;
+            }
         </style>
         
-        <!-->Javaskript-Library "Leaflet"</!-->
+        <!-- Javaskript-Library "Leaflet" -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         
-        <!-->JQuery-Library</!-->
+        <!-- JQuery-Library -->
         <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+        
+        <!-- Ajax-Library for Leaflet -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+        
+        <!-- Turf.js-Library for Analysis -->
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
         
     </head>
     
@@ -38,21 +50,88 @@
         <div id="header" class="col-md-12">
             <h1 class="text-center">Meine erste Karte</h1>
         </div>
+        
         <div id="side-panel" class="col-md-3">
             <h1 class="text-center">Inhalt</h1>
+            <!-- <button id="ZoomZumStadtpark" class='form-control btn-primary'>Mein Kiez</button> -->
+            <button id="btnBuffer" class="form-control btn-warning buffercss">Puffer</button>
         </div>
+        
         <div id="mapdiv" class="col-md-9">
         </div>
+        
         <div id="footer" class="col-md-12">
             <h4 id="map_coords" class="text-center">Längengrad: xy Breitengrad: xy Zoom: xy</h4>
             <h4 class="text-center">Copyright: Jennifer Reinecke; Background Map: Leaflet (c) OpenStreetMap Contributors</h4>
         </div>    
         
         <script>
+            // Side Bar
+            /* $("#ZoomZumStadtpark").click(function(){
+                                         mymap.setView([52.448529, 13.335558], [17]);
+                                         }); */
+                    
+            // Map 
             var mymap = L.map('mapdiv')
-            mymap.setView([52.448529, 13.335558], [16])
+            mymap.setView([52.448529, 13.335558], 11)
             var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
             mymap.addLayer(backgroundLayer);
+                        
+            // Markers 
+            /* var Stadtpark = L.marker([52.44852562848444, 13.335589316759135]).addTo(mymap);
+            Stadtpark.bindPopup(`<h3 class='text-center'>Stadtpark Steglitz</h3><br>
+                                <div class='text-center'><a href='https://de.wikipedia.org/wiki/Stadtpark_Steglitz' target='blank'>
+                                    <img src=img/StadtparkSteglitz.jpg width='200px'></a>
+                                    <p>Von Muns - Selbst fotografiert, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=28602188</p>
+                                </div>`); */
+            
+            /* var geojsonLayer = new L.GeoJSON.AJAX("data/testdaten.geojson", {pointToLayer:
+                function(feature, latlng){
+                    var str = "<h4 class='text-center'>" + feature.properties.Name + "</h4><br>";
+                        str += "<div class='text-center'><img src='img/" + feature.properties.Bild + "' width='200px'></div>";
+                        str += "<p class='text-center'>" + feature.properties.Copyright + "</p>";
+                    return L.marker(latlng).bindPopup(str);
+                }}).addTo(mymap); */
+            
+            // Side Bar & Markers from GEOJSON-file (in data)
+            var geojsonLayer = new L.GeoJSON.AJAX("data/testdaten.geojson", {pointToLayer:
+                function(feature, latlng){
+                    var str = "<button id='ZoomTo" + feature.properties.Name.replace(/ /g, '');
+                        str += "' class='form-control btn-primary meinkiez'>";
+                        str += feature.properties.Name + "</button>";
+                    $("#side-panel").append(str);
+                    
+                    $("#ZoomTo" + feature.properties.Name.replace(/ /g, '')).click(function(){
+                                         mymap.setView([latlng.lat, latlng.lng], 17);
+                                         }); 
+                    
+                    var str = "<h4 class='text-center'>" + feature.properties.Name + "</h4><br>";
+                        str += "<div class='text-center'><img src='img/" + feature.properties.Bild + "' width='200px'></div>";
+                        str += "<p class='text-center'>" + feature.properties.Copyright + "</p>";
+                    return L.marker(latlng).bindPopup(str);
+                }}).addTo(mymap); 
+            
+            // Buffer around Points of data layer (see "geojsonLayer")
+            var bufferLayer;
+            $("#btnBuffer").click(function(){
+                console.log("Button geklickt, Text:", $(this).text().trim());
+                if($("#btnBuffer").html() == 'Puffer'){
+                    var bufferedTestdaten = turf.buffer(geojsonLayer.toGeoJSON(), 500, {units: 'meters'});
+                    bufferLayer = L.geoJSON(bufferedTestdaten).addTo(mymap);
+                    $("#btnBuffer").html('Puffer entfernen');
+                }
+                else{
+                    mymap.removeLayer(bufferLayer);
+                    $("#btnBuffer").html('Puffer');
+                }
+            });
+            
+            <!-- Footer -->
+            mymap.on('mousemove', function(e){
+                var str="Breitengrad: " + e.latlng.lat.toFixed(5) + "   Längengrad: " + e.latlng.lng.toFixed(5) + "   Zoom: " + mymap.getZoom();
+                $('#map_coords').html(str);
+            });
+            
         </script>
         
     </body>
